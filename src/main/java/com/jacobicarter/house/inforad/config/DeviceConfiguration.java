@@ -1,8 +1,8 @@
-package com.jacobicarter.house.inforad.dto;
+package com.jacobicarter.house.inforad.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public abstract class SmartHomeDevice {
+public abstract class DeviceConfiguration {
     @JsonProperty
     private int x;
     @JsonProperty
@@ -10,24 +10,27 @@ public abstract class SmartHomeDevice {
     @JsonProperty
     private int z;
 
-    public SmartHomeDevice() {
-    }
-
-    public SmartHomeDevice(final int x, final int y, final int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
     public int getX() {
         return x;
+    }
+
+    public void setX(final int x) {
+        this.x = x;
     }
 
     public int getY() {
         return y;
     }
 
+    public void setY(final int y) {
+        this.y = y;
+    }
+
     public int getZ() {
         return z;
+    }
+
+    public void setZ(final int z) {
+        this.z = z;
     }
 }

@@ -1,7 +1,6 @@
 package com.jacobicarter.house.inforad.services;
 
 import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
@@ -20,7 +19,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.websocket.Session;
 import java.lang.invoke.MethodHandles;
-import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -62,7 +60,6 @@ public class FrameService {
 
     private void sendFrame() {
         try {
-            LOG.info("Generating frame.");
             final Frame frame = generateFrame();
             final String frameJson = mapper.writeValueAsString(frame);
             sendAll(frameJson);

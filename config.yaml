@@ -9,3 +9,17 @@ server:
 frameDelayMs: 50
 datePattern: EEEE, MMMM d, yyyy
 timePattern: HH:mm:ss.SSSS
+networkDevices:
+  - name: rtr-ge-dmarc
+    x: 0
+    y: 0
+    z: 0
+    address: 10.199.1.1
+    community: 2gDtIoqrtxsS
+    refreshMs: 100
+    links:
+      - target: sw-xe-1
+        rxbOid: .1
+        txbOid: .1
+        speed: 1000000000
+        vlid: -1

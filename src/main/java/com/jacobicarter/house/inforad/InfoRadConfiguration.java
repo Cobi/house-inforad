@@ -1,7 +1,10 @@
 package com.jacobicarter.house.inforad;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.jacobicarter.house.inforad.config.NetworkDeviceConfiguration;
 import io.dropwizard.Configuration;
+
+import java.util.List;
 
 public class InfoRadConfiguration extends Configuration {
     @JsonProperty
@@ -10,6 +13,8 @@ public class InfoRadConfiguration extends Configuration {
     private String datePattern;
     @JsonProperty
     private int frameDelayMs;
+    @JsonProperty
+    private List<NetworkDeviceConfiguration> networkDevices;
 
 
     public void setTimePattern(final String timePattern) {
@@ -34,5 +39,13 @@ public class InfoRadConfiguration extends Configuration {
 
     public int getFrameDelayMs() {
         return frameDelayMs;
+    }
+
+    public List<NetworkDeviceConfiguration> getNetworkDevices() {
+        return networkDevices;
+    }
+
+    public void setNetworkDevices(final List<NetworkDeviceConfiguration> networkDevices) {
+        this.networkDevices = networkDevices;
     }
 }

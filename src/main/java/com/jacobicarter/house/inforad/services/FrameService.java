@@ -40,13 +40,15 @@ public class FrameService {
     private final Set<Session> sessions = ConcurrentHashMap.newKeySet();
     private final DateTimeFormatter timeFormatter;
     private final DateTimeFormatter dateFormatter;
+    private final SmartHomeService smartHomeService;
 
     @Inject
-    public FrameService(final ScheduledExecutorService executor, final InfoRadConfiguration configuration) {
+    public FrameService(final ScheduledExecutorService executor, final InfoRadConfiguration configuration, final SmartHomeService smartHomeService) {
         LOG.info("FrameService constructed: frameDelayMs={}", configuration.getFrameDelayMs());
         timeFormatter = DateTimeFormatter.ofPattern(configuration.getTimePattern());
         dateFormatter = DateTimeFormatter.ofPattern(configuration.getDatePattern());
-        executor.scheduleAtFixedRate(() -> sendFrame(), configuration.getFrameDelayMs(), configuration.getFrameDelayMs(),
+        this.smartHomeService = smartHomeService;
+        executor.scheduleAtFixedRate(this::sendFrame, configuration.getFrameDelayMs(), configuration.getFrameDelayMs(),
                 TimeUnit.MILLISECONDS);
     }
 
@@ -69,6 +71,7 @@ public class FrameService {
     }
 
     private void sendAll(final String data) {
+        //LOG.debug("Sending frame: {}", data);
         sessions.forEach(session -> send(session, data));
     }
 
@@ -105,7 +108,7 @@ public class FrameService {
     }
 
     private SmartHome generateSmartHome() {
-        return new SmartHome(ImmutableList.of(), ImmutableList.of(), ImmutableList.of(), ImmutableList.of()); //TODO
+        return smartHomeService.get();
     }
 
     private NetworkStatus generateNetworkStatus() {

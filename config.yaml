@@ -6,7 +6,7 @@ server:
     - type: http
       port: 8081
       bindHost: 127.0.0.1
-frameDelayMs: 50
+frameDelayMs: 1000
 datePattern: EEEE, MMMM d, yyyy
 timePattern: HH:mm:ss.SSSS
 networkDevices:
@@ -16,10 +16,162 @@ networkDevices:
     z: 0
     address: 10.199.1.1
     community: 2gDtIoqrtxsS
-    refreshMs: 100
+    refreshMs: 1000
     links:
       - target: sw-xe-1
-        rxbOid: .1
-        txbOid: .1
-        speed: 1000000000
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.19 #ifHCInOctets.19 (bond0)
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.19 #ifHCOutOctets.19 (bond0)
+        speed: 5000000000 # 5x1g
         vlid: -1
+  - name: sw-xe-1
+    x: 0
+    y: 0
+    z: 0
+    address: 10.199.1.2
+    community: 2gDtIoqrtxsS
+    refreshMs: 1000
+    links:
+      - target: sw-poe-1 #.65538 (Po2)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.65538 #ifHCInOctets.65538 (Po2)
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.65538 #ifHCOutOctets.65538 (Po2)
+        speed: 1000000000 # 1g
+        vlid: -1
+      - target: lx-desktop-1 #.65539 (Po3)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.65539 #ifHCInOctets.65539 (Po3)
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.65539 #ifHCOutOctets.65539 (Po3)
+        speed: 1000000000 # 1g
+        vlid: -1
+      - target: dvr-main-1 #.99330 (Gi1/0/2)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.99330 #ifHCInOctets.99330 (Gi1/0/2)
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.99330 #ifHCOutOctets.99330 (Gi1/0/2)
+        speed: 1000000000 # 1g
+        vlid: 21
+      - target: lte-verizon-1 #.99331 (Gi1/0/3)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.99331 #ifHCInOctets.99331 (Gi1/0/3)
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.99331 #ifHCOutOctets.99331 (Gi1/0/3)
+        speed: 1000000000 # 1g
+        vlid: 21
+      - target: nas-syn-1 #.99332 (Gi1/0/4)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.99332 #ifHCInOctets.99332 (Gi1/0/4)
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.99332 #ifHCOutOctets.99332 (Gi1/0/4)
+        speed: 1000000000 # 1g
+        vlid: 21
+      - target: wap-sonos-1 #.99333 (Gi1/0/5)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.99333 #ifHCInOctets.99331 (Gi1/0/5)
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.99333 #ifHCOutOctets.99331 (Gi1/0/5)
+        speed: 100000000 # 100m
+        vlid: 20
+      - target: hue-bridge-1 #.99334 (Gi1/0/6)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.99334 #ifHCInOctets.99331 (Gi1/0/6)
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.99334 #ifHCOutOctets.99331 (Gi1/0/6)
+        speed: 1000000000 # 1g
+        vlid: 20
+  - name: sw-poe-1
+    x: 0
+    y: 0
+    z: 0
+    address: 10.199.1.3
+    community: 2gDtIoqrtxsS
+    refreshMs: 1000
+    links:
+      - target: ctrl-ubnt-1 #.10105 (Gi1/0/5)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10105 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10105 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 20
+      - target: wap-ubnt-grtrm #.10106 (Gi1/0/6)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10106 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10106 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 20
+      - target: wap-ubnt-bnsrm #.10107 (Gi1/0/7)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10107 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10107 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 20
+      - target: wap-ubnt-offic #.10108 (Gi1/0/8)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10108 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10108 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 20
+      - target: wap-ubnt-mstrbd #.10109 (Gi1/0/9)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10109 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10109 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 20
+      - target: wap-ubnt-cmprm #.10110 (Gi1/0/10)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10110 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10110 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 20
+      - target: wap-ubnt-fntyd #.10111 (Gi1/0/11)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10111 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10111 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 20
+      - target: sw-ge-2 #.10116 (Gi1/0/16)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10116 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10116 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: -1
+      - target: sw-ge-1 #.10117 (Gi1/0/17)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10117 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10117 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: -1
+      - target: rtr-usg-wifi-lan #.10118 (Gi1/0/18)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10118 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10118 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 20
+      - target: rtr-usg-wifi-wan #.10119 (Gi1/0/19)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10119 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10119 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 1
+      - target: tv-grtrm-1 #.10120 (Gi1/0/20)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10120 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10120 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 20
+      - target: fw-pa-1 #.10121 (Gi1/0/21)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.10121 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.10121 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 1
+  - name: sw-ge-1
+    x: 0
+    y: 0
+    z: 0
+    address: 10.199.1.4
+    community: 2gDtIoqrtxsS
+    refreshMs: 1000
+    links:
+      - target: spkr-sonos-bnsrm #.4 (g4)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.4 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.4 #ifHCOutOctets
+        speed: 100000000 # 100m
+        vlid: 20
+      - target: wx-desktop-1 #.5 (g5)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.5 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.5 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 22
+  - name: sw-ge-2
+    x: 0
+    y: 0
+    z: 0
+    address: 10.199.1.5
+    community: 2gDtIoqrtxsS
+    refreshMs: 1000
+    links:
+      - target: lx-work-1 #.2 (1/2)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.2 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.2 #ifHCOutOctets
+        speed: 1000000000 # 1g
+        vlid: 7
+      - target: spkr-sonos-offic #.3 (1/3)
+        rxbOid: .1.3.6.1.2.1.31.1.1.1.6.3 #ifHCInOctets
+        txbOid: .1.3.6.1.2.1.31.1.1.1.10.3 #ifHCOutOctets
+        speed: 100000000 # 100m
+        vlid: 20

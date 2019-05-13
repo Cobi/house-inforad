@@ -10,7 +10,7 @@ public class NetworkDevice extends SmartHomeDevice {
     @JsonProperty
     private String address;
     @JsonProperty
-    private List<NetworkLink> links;
+    private volatile List<NetworkLink> links;
 
     public NetworkDevice() {
 

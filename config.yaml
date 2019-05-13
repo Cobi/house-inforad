@@ -176,5 +176,12 @@ networkDevices:
         speed: 100000000 # 100m
         vlid: 20
 hue:
-  bridgeIp: 10.199.1.1
-  username:
+  - bridgeIp: 10.199.1.1
+    username: abc123
+    refreshMs: 1000
+    lights:
+      - name: Example
+        x: 0
+        y: 0
+        z: 0
+        uniqueId: ABCD1234

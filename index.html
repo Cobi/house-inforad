@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
+        .cover {
+            height: 1920px;
+            width: 1080px;
+            background-color: black;
+            color: white;
+            overflow: hidden;
+        }
+        .comment {
+            text-align: center;
+            color: #999;
+            font-size: 28px;
+            margin-top: 10px;
+        }
+        .time {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 134px;
+            text-align: center;
+        }
+        .date {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 48px;
+            text-align: center;
+        }
+        .ord {
+            vertical-align: super;
+            font-size: 30px;
+        }
+        .chronoblock {
+            width: 500px;
+            margin: 0;
+            padding: 20px;
+            float: left;
+            overflow: hidden;
+        }
+        .weatherblock {
+            width: 500px;
+            margin: 0;
+            padding: 20px;
+            float: left;
+            overflow: hidden;
+            display: block;
+        }
+        .weather {
+            width: 500px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+        }
+        .weather > .partlycloudy {
+            width: 200px;
+            height: 200px;
+            background-image: url("https://wikiclipart.com/wp-content/uploads/2017/02/Simple-weather-icons-partly-cloudy-svg-vector-clipart.png");
+            background-size: contain;
+            display: inline-flex;
+        }
+        .weather > .temperatures {
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 200px;
+            font-size: 48px;
+            display: inline-flex;
+        }
+        .weatherblock > .forecast {
+            display: flex;
+        }
+        .weatherblock > .forecast > .day {
+            display: block;
+            width: 100px;
+            height: 100px;
+        }
+        .weatherblock > .forecast > .day > .partlycloudy {
+            margin-left: auto;
+            margin-right: auto;
+            width: 75px;
+            height: 75px;
+            background-image: url("https://wikiclipart.com/wp-content/uploads/2017/02/Simple-weather-icons-partly-cloudy-svg-vector-clipart.png");
+            background-size: contain;
+        }
+        .weatherblock > .forecast > .day > .temperatures {
+            text-align: center;
+            font-size: 20px;
+        }
+        .smarthome {
+            clear: both;
+            width: 1080px;
+            height: 1080px;
+            border: #777 dashed;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 1080px;
+        }
+        .networkstatus {
+            position: absolute;
+            margin-top: -1080px;
+            margin-left: 770px;
+            width: 300px;
+            height: 350px;
+        }
+        .networkstatusentry {
+            float: right;
+            border: red 4px solid;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 100px;
+            border-radius: 100px;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 25px;
+            margin-right: 25px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .networkstatusentry > .value {
+            font-size: 48px;
+            position: absolute;
+            margin: auto;
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+        }
+        .networkstatusentry > .units {
+            font-weight: lighter;
+            font-size: 12px;
+            position: relative;
+            top: 75px;
+            text-align: center;
+            width: 100px;
+            color: #777777;
+        }
+        .networkstatusentry > .label {
+            font-weight: lighter;
+            font-size: 12px;
+            position: absolute;
+            width: 100px;
+            margin-top: 10px;
+        }
+        .networkstatusentry#devicecount {
+            border-color: #77ff77;
+        }
+        .networkstatusentry#wirelesscount {
+            border-color: #7777ff;
+        }
+        .networkstatusentry#internettxs {
+            border-color: #77ffff;
+        }
+        .networkstatusentry#internetrxs {
+            border-color: #ff77ff;
+        }
+        .networkstatusentry#internetlatencyms {
+            border-color: #ffff77;
+        }
+
+        .networkstatusentry#devicecount > .label {
+            color: #77ff77;
+        }
+        .networkstatusentry#wirelesscount > .label {
+            color: #7777ff;
+        }
+        .networkstatusentry#internettxs > .label {
+            color: #77ffff;
+        }
+        .networkstatusentry#internetrxs > .label {
+            color: #ff77ff;
+        }
+        .networkstatusentry#internetlatencyms > .label {
+            color: #ffff77;
+        }
+
+        .calendar {
+            width: 500px;
+            margin: 0;
+            padding: 20px;
+            float: left;
+            overflow: hidden;
+        }
+        .calendar > .event {
+            width: 490px;
+            border: #7777ff solid 1px;
+            background-color: #114;
+            padding: 10px;
+            margin-top: 5px;
+        }
+        .calendar > .event > .title {
+            font-weight: bold;
+            display: flex;
+            width: 100%;
+        }
+        .calendar > .event > .zoom {
+            text-align: center;
+            display: inline-flex;
+        }
+        .calendar > .event > .times {
+            float: right;
+            display: inline-flex;
+        }
+        .todo {
+            width: 500px;
+            margin: 0;
+            padding: 20px;
+            float: left;
+            overflow: hidden;
+        }
+        .todo > .item {
+            width: 480px;
+            border: #77ff77 solid 1px;
+            background-color: #141;
+            padding: 10px;
+            margin-top: 5px;
+        }
+        .todo > .item > .title {
+            font-weight: bold;
+            display: inline-flex;
+        }
+        .todo > .item > .due {
+            float: right;
+            display: inline-flex;
+        }
+        .notifications {
+            clear: both;
+            position: absolute;
+            top: 1750px;
+            width: 1080px;
+        }
+        .notifications > .notification {
+            width: 1040px;
+            border: #ff7777 solid 1px;
+            background-color: #411;
+            padding: 10px;
+            margin-top: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="cover">
+        <div class="chronoblock">
+            <div class="comment">The time is currently</div>
+            <div class="time">04:20:19</div>
+            <div class="date">Tuesday, May 14<span class="ord">th</span>, 2019</div>
+            <div class="comment">"The Stars and Stripes Forever" Day</div>
+        </div>
+        <div class="weatherblock">
+            <div class="weather">
+                <div class="partlycloudy"></div>
+                <div class="temperatures">70&deg; F</div>
+            </div>
+            <div class="forecast">
+                <div class="day">
+                    <div class="partlycloudy"></div>
+                    <div class="temperatures">70&deg; / 65&deg;</div>
+                </div>
+                <div class="day">
+                    <div class="partlycloudy"></div>
+                    <div class="temperatures">70&deg; / 65&deg;</div>
+                </div>
+                <div class="day">
+                    <div class="partlycloudy"></div>
+                    <div class="temperatures">70&deg; / 65&deg;</div>
+                </div>
+                <div class="day">
+                    <div class="partlycloudy"></div>
+                    <div class="temperatures">70&deg; / 65&deg;</div>
+                </div>
+                <div class="day">
+                    <div class="partlycloudy"></div>
+                    <div class="temperatures">70&deg; / 65&deg;</div>
+                </div>
+            </div>
+        </div>
+        <div class="smarthome">House diagram goes here</div>
+        <div class="networkstatus">
+            <div class="networkstatusentry" id="internettxs">
+                <div class="label">Upload</div>
+                <div class="value">13</div>
+                <div class="units">mbps</div>
+            </div>
+            <div class="networkstatusentry" id="wirelesscount">
+                <div class="label">Wireless</div>
+                <div class="value">68</div>
+                <div class="units">devices</div>
+            </div>
+            <div class="networkstatusentry" id="internetrxs">
+                <div class="label">Download</div>
+                <div class="value">72</div>
+                <div class="units">mbps</div>
+            </div>
+            <div class="networkstatusentry" id="devicecount">
+                <div class="label">Total</div>
+                <div class="value">165</div>
+                <div class="units">devices</div>
+            </div>
+            <div class="networkstatusentry" id="internetlatencyms">
+                <div class="label">Latency</div>
+                <div class="value">5.1</div>
+                <div class="units">ms</div>
+            </div>
+        </div>
+        <div class="calendar">
+            <div class="event">
+                <span class="title">Hackathon Watch Party</span>
+                <span class="zoom">508-265-427</span>
+                <span class="times">12:00 - 19:00</span>
+            </div>
+            <div class="event">
+                <span class="title">VPN and Dev Environment Set Up</span>
+                <span class="zoom">908-024-692</span>
+                <span class="times">12:30 - 14:30</span>
+            </div>
+            <div class="event">
+                <span class="title">FW: ScaleFT Daily Standup</span>
+                <span class="zoom">642-298-552</span>
+                <span class="times">14:00 - 14:15</span>
+            </div>
+        </div>
+        <div class="todo">
+            <div class="item">
+                <span class="title">Add salt to Kinetico</span>
+                <span class="due">Tomorrow</span>
+            </div>
+            <div class="item">
+                <span class="title">Finish InfoRad</span>
+            </div>
+            <div class="item">
+                <span class="title">Find a contractor for shed renovation</span>
+                <span class="due">May 29, 2019</span>
+            </div>
+        </div>
+        <div class="notifications">
+            <div class="notification">Loft lights turned on</div>
+            <div class="notification">Kitchen lights turned off</div>
+            <div class="notification">phn-fi-cobi connected to wap-ubnt-grtrm</div>
+        </div>
+    </div>
+</body>
+</html>

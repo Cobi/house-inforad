@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 
 public class HueBridgePoller implements Runnable {
     private static class LightConfigPair {
-        public final Light light;
-        public final Optional<LightDeviceConfiguration> configuration;
+        final Light light;
+        final Optional<LightDeviceConfiguration> configuration;
 
-        public LightConfigPair(final Light light, final Optional<LightDeviceConfiguration> configuration) {
+        LightConfigPair(final Light light, final Optional<LightDeviceConfiguration> configuration) {
             this.light = light;
             this.configuration = configuration;
         }
